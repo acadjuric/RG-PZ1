@@ -1,0 +1,75 @@
+﻿<Window x:Class="PredmetniZadatak1.Eclipse"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PredmetniZadatak1"
+        mc:Ignorable="d"
+         Title="Ellipse" Height="350" Width="500">
+    <Window.Resources>
+        <DataTemplate x:Key="ComboBoxTemplate">
+            <StackPanel Orientation="Horizontal">
+                <Rectangle Width="16" Height="16" Margin="0,2,5,2">
+                    <Rectangle.Fill>
+                        <SolidColorBrush Color="{Binding Color}"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <TextBlock Text="{Binding Name}" />
+            </StackPanel>
+        </DataTemplate>
+
+        <Style x:Key="MyButtonStyle" TargetType="Button">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border" 
+                        BorderThickness="1" 
+                        BorderBrush="GhostWhite" 
+                        CornerRadius="3" 
+                            Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="BorderBrush" Value="Black" />
+                                <Setter Property="Cursor" Value="Hand" />
+                                <Setter Property="FontWeight" Value="Bold"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Window.Resources>
+    <Grid Background="Peru">
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Radius X:" FontWeight="Bold" Width="100" Height="30" Margin="10,10"></Label>
+                <TextBox BorderBrush="Black" Name="X" VerticalContentAlignment="Top" HorizontalAlignment="Center" Width="100" Height="30" Margin="150,10,10,10"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Radius Y:" FontWeight="Bold" Width="100" Height="30" Margin="10,10"></Label>
+                <TextBox BorderBrush="Black" Name="Y" VerticalContentAlignment="Top" HorizontalAlignment="Center" Width="100" Height="30" Margin="150,10,10,10"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Fill Color:" FontWeight="Bold" Width="100" Height="30" Margin="10,10"></Label>
+                <ComboBox SelectedValuePath="Color" ItemTemplate="{StaticResource ComboBoxTemplate}" Name="BojaComboBox" Width="170" Height="30" Margin="150,10,10,10"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Border Color:" FontWeight="Bold" Width="100" Height="30" Margin="10,10"></Label>
+                <ComboBox SelectedValuePath="Color" ItemTemplate="{StaticResource ComboBoxTemplate}" Name="ColorComboBox" Width="170" Height="30" Margin="150,10,10,10"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Border Thickness:" FontWeight="Bold" Width="120" Height="30" Margin="10,10"></Label>
+                <TextBox BorderBrush="Black" Name="debljina" VerticalContentAlignment="Top" HorizontalAlignment="Center" Width="100" Height="30" Margin="130,10,10,10"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Button Style="{StaticResource MyButtonStyle}" Content="Cancel" Width="80" Height="30" Margin="30,10" Click="Button_Click" Background="Red" Foreground="White" FontSize="18"/>
+                <Button Style="{StaticResource MyButtonStyle}" Content="Draw" Width="80" Height="30" Margin="150,10" Click="Button_Click_1" Background="DodgerBlue" Foreground="White" FontSize="18"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>
